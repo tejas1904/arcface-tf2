@@ -42,11 +42,11 @@ def OutputLayer(embd_shape, w_decay=5e-4, name='OutputLayer'):
     """Output Later"""
     def output_layer(x_in):
         x = inputs = Input(x_in.shape[1:])
-        x = BatchNormalization()(x)
+        x = tf.keras.layers.BatchNormalization()(x)
         x = Dropout(rate=0.5)(x)
         x = Flatten()(x)
         x = Dense(embd_shape, kernel_regularizer=_regularizer(w_decay))(x)
-        x = BatchNormalization()(x)
+        x = tf.keras.layers.BatchNormalization()(x)
         return Model(inputs, x, name=name)(x_in)
     return output_layer
 
