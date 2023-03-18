@@ -91,6 +91,6 @@ def ArcFaceModel(size=None, channels=3, num_classes=None, name='arcface_model',
                              logist_scale=logist_scale)(embds, labels)
         else:
             logist = NormHead(num_classes=num_classes, w_decay=w_decay)(embds)
-        return Model((inputs, labels), logist, name=name)
+        return Model(inputs,embds),Model((inputs, labels), logist, name=name)
     else:
         return Model(inputs, embds, name=name)
